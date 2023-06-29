@@ -11,7 +11,7 @@ const App = () => {
   const resultsRef = useRef<Results>();
 
   /**
-   * 検出結果（フレーム毎に呼び出される）
+   * 검출결과（프레임마다 호출됨）
    * @param results
    */
   const onResults = useCallback((results: Results) => {
@@ -53,7 +53,7 @@ const App = () => {
     }
   }, [onResults]);
 
-  /** 検出結果をconsoleに出力する */
+  /*  랜드마크들의 좌표를 콘솔에 출력 */
   const OutputData = () => {
     const results = resultsRef.current!;
     console.log(results.multiHandLandmarks);
@@ -61,7 +61,7 @@ const App = () => {
 
   return (
     <div className={styles.container}>
-      {/* capture */}
+      {/* 비디오 캡쳐 */}
       <Webcam
         audio={false}
         style={{ visibility: "hidden" }}
@@ -71,14 +71,14 @@ const App = () => {
         screenshotFormat="image/jpeg"
         videoConstraints={{ width: 1280, height: 720, facingMode: "user" }}
       />
-      {/* draw */}
+      {/* 랜드마크를 손에 표시 */}
       <canvas
         ref={canvasRef}
         className={styles.canvas}
         width={1280}
         height={720}
       />
-      {/* output */}
+      {/* 좌표 출력 */}
       <div className={styles.buttonContainer}>
         <button className={styles.button} onClick={OutputData}>
           Output Data

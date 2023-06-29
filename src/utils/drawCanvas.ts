@@ -7,14 +7,14 @@ export const drawCanvas = (ctx: CanvasRenderingContext2D, results: Results) => {
 
   ctx.save();
   ctx.clearRect(0, 0, width, height);
-  // canvas の左右反転
+  // canvas의 좌우 반전
   ctx.scale(-1, 1);
   ctx.translate(-width, 0);
-  // capture image の描画
+  // capture image 그리기
   ctx.drawImage(results.image, 0, 0, width, height);
-  // 手の描画
+  // 손의 묘사
   if (results.multiHandLandmarks) {
-    // 骨格の描画
+    // 골격 묘사
     for (const landmarks of results.multiHandLandmarks) {
       drawConnectors(ctx, landmarks, HAND_CONNECTIONS, {
         color: "#00FF00",
@@ -29,34 +29,3 @@ export const drawCanvas = (ctx: CanvasRenderingContext2D, results: Results) => {
   }
   ctx.restore();
 };
-
-// const drawCircle = (
-//   ctx: CanvasRenderingContext2D,
-//   handLandmarks: NormalizedLandmarkListList
-// ) => {
-//   if (
-//     handLandmarks.length === 2 &&
-//     handLandmarks[0].length > 8 &&
-//     handLandmarks[1].length > 8
-//   ) {
-//     const width = ctx.canvas.width;
-//     const height = ctx.canvas.height;
-//     const [x1, y1] = [
-//       handLandmarks[0][8].x * width,
-//       handLandmarks[0][8].y * height,
-//     ];
-//     const [x2, y2] = [
-//       handLandmarks[1][8].x * width,
-//       handLandmarks[1][8].y * height,
-//     ];
-//     const x = (x1 + x2) / 2;
-//     const y = (y1 + y2) / 2;
-//     const r = Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2)) / 2;
-
-//     ctx.strokeStyle = "#0082cf";
-//     ctx.lineWidth = 3;
-//     ctx.beginPath();
-//     ctx.arc(x, y, r, 0, Math.PI * 2, true);
-//     ctx.stroke();
-//   }
-// };
