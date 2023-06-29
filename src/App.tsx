@@ -21,7 +21,7 @@ const App = () => {
     drawCanvas(canvasCtx, results);
   }, []);
 
-  // 初期設定
+  // 초기설정
   useEffect(() => {
     const hands = new Hands({
       locateFile: (file) => {
